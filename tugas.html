@@ -1,0 +1,119 @@
+<html>
+    <head>
+        <title>Praktikum 7</title>
+        <style>
+
+            body {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: #23b499;
+   font-family: 'Open Sans', sans-serif;
+   color: #fff;
+}
+select {
+   -webkit-appearance:none;
+   -moz-appearance:none;
+   -ms-appearance:none;
+   appearance:none;
+   outline:0;
+   box-shadow:none;
+   border:0!important;
+   background: #5c6664;
+   background-image: none;
+   flex: 1;
+   padding: 0 .5em;
+   color:#fff;
+   cursor:pointer;
+   font-size: 1em;
+   font-family: 'Open Sans', sans-serif;
+}
+select::-ms-expand {
+   display: none;
+}
+.select {
+   position: relative;
+   display: flex;
+   width: 20em;
+   height: 3em;
+   line-height: 3;
+   background: #5c6664;
+   overflow: hidden;
+   border-radius: .25em;
+}
+.select::after {
+   content: '\25BC';
+   position: absolute;
+   top: 0;
+   right: 0;
+   padding: 0 1em;
+   background: #2b2e2e;
+   cursor:pointer;
+   pointer-events:none;
+   transition:.25s all ease;
+}
+.select:hover::after {
+   color: #23b499;
+}
+
+        </style>
+    </head>
+    <body>
+        <h1>Praktikum 7</h1>
+        <div class="select">
+        <select name="provinsi" id="provinsi">
+            <option disabled selected>Silahkan Pilih Provinsi</option>
+            <option value="Bali">Bali</option>
+            <option value="Banten">Banten</option>
+            <option value="DKI Jakarta">DKI Jakarta</option>
+            <option value="Sumatera Utara">Sumatera Utara</option>
+            <option value="Papua">Papua</option>
+            <option value="Maluku">Maluku</option>
+            <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+            <option value="Kalimantan Barat">Kalimantan Barat </option>
+            <option value="Jawa Barat">Jawa Barat</option>
+        </select></div>
+
+        <div class="select">
+        <select name="city" id="city">
+            <option disabled selected>Silahkan Pilih Kota</option>
+        </select></div>
+
+        <h1 id="result"></h1>
+        <script>
+            var arrays = [];
+            arrays['Bali'] = ["Kota Denpasar","KAB. Badung","KAB. Buleleng","KAB. Klungkung", "KAB. Gianyar"];
+            arrays['Banten'] = ["Kota Serang","Kota Tangerang","Kota Tangerang Selatan","KAB. Cilegon", "KAB. Lebak"];
+            arrays['DKI Jakarta'] = ["Kota Jakarta Selatan","Kota Jakarta Timur","Kota Jakarta Utara","Kota Jakarta Barat", "Kota Jakarta Pusat"];
+            arrays['Sumatera Utara'] = ["Kota Medan","Kota Pematangsiantar","Kota Binjai","Kota Tebing Tinggi","Kota Sibolga"];
+            arrays['Papua'] = ["Kota Jayapura","KAB. Merauke","KAB. Mimika","KAB. Deiyai", "KAB. Asmat"];
+            arrays['Sulawesi Selatan'] = ["Kota Makassar","Kota Palopo","Kota Pare Pare","KAB. Tana Toraja", "KAB. Luwu"];
+            arrays['Kalimantan Barat'] = ["Pontianak","Singkawang","KAB. Melawai","KAB. Sambas", "KAB. Sanggau"];
+            arrays['Jawa Barat'] = ["Kota Bogor","Kota Depok","Kota Bandung","Kota Cirebon", "Kota Sukabumi"];
+            arrays['Maluku'] = ["Kota Ambon","Kota Tual","KAB. Buru","KAB. Maluku Tengah", "KAB. Kepulauan Aru"];
+
+            document.getElementById("provinsi").onchange = function(){
+                var value = document.getElementById("provinsi").value;
+                var data = arrays[value];
+                var length = data.length;
+
+                var html= '<option disabled selected>Silahkan Pilih Kota</option>';
+                for (i=0; i < length; i++) {
+                    html+="<option>"+data[i]+"</option>";
+                }
+                document.getElementById("city").innerHTML=html
+            }
+
+            document.getElementById("city").onchange = function(){
+                var provinsi = document.getElementById("provinsi").value;
+                var city = document.getElementById("city").value;
+                var text = "Pada Provinsi " +provinsi+ " ada " +city;
+                document.getElementById("result").innerHTML=text
+
+            }
+
+        </script>
+    </body>
+</html>
